@@ -13,6 +13,9 @@ namespace :elbas do
 
   task :deploy do
     fetch(:aws_autoscale_group_names).each do |aws_autoscale_group_name|
+      info "Waiting for AMI creation to run..."
+      sleep 5
+      
       info "Auto Scaling Group: #{aws_autoscale_group_name}"
       asg = Elbas::AWS::AutoscaleGroup.new aws_autoscale_group_name
 
